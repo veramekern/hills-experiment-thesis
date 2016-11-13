@@ -221,7 +221,7 @@ class App:
                 self.on_event(event)
             self.on_loop()
             self.on_render()
-            if timer()-self.trialStartTime > 120.0:
+            if timer()-self.trialStartTime > 30.0:
                 self._running = False
         self.write_data()
 
