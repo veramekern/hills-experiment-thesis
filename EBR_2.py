@@ -60,9 +60,10 @@ class Stimulus:
 
 
 class Main:
-    def __init__(self, subjectID, condition):
+    def __init__(self, subjectID, condition, ebr_time):
         self.subjectID = subjectID
         self.condition = condition
+        self.ebr_time = ebr_time
 
         filename = str(self.subjectID) + "_EBR_2" + ".txt"
         f = open(filename, 'w')
@@ -104,7 +105,7 @@ class Main:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         self.running = False
-                elif timer() - self.start > ebr_time:
+                elif timer() - self.start > self.ebr_time:
                     self.running = False
 
                 if self.running == False:
@@ -132,10 +133,16 @@ class Main:
         clock.tick(60)
 
 if __name__ == '__main__':
+    debug = sys.argv[3]
+    if debug == "f":
+        ebr_time = 360.0
+    else:
+        ebr_time = 10.0
+
     subject_ID = sys.argv[1]
     if sys.argv[2] == "r":
         condition = random.choice(("c", "d"))
     else:
         condition = sys.argv[2]
-    run = Main(subject_ID, condition)
+    run = Main(subject_ID, condition, ebr_time)
     run.main()
