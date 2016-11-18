@@ -81,7 +81,7 @@ class Environment:
 
 
 class App:
-    def __init__(self, subject, condition, debug=False):
+    def __init__(self, subject, condition, trial_time, debug=False):
         self._running = True
         self._display_surf = None
         self.debug = debug
@@ -90,6 +90,7 @@ class App:
         self.condition = condition
         self.trialNum = 0
         self.trialStartTime = 0
+        self.trial_time = trial_time
         if self.debug is True:
             self.visiblePath = True
         else:
@@ -222,7 +223,7 @@ class App:
                 self.on_event(event)
             self.on_loop()
             self.on_render()
-            if timer()-self.trialStartTime > 120.0:
+            if timer()-self.trialStartTime > self.trial_time:
                 self._running = False
         self.write_data()
 
@@ -237,11 +238,17 @@ class App:
 
 
 if __name__ == "__main__":
+    debug = sys.argv[3]
+    if debug == "f":
+        trial_time = 120.0
+    else:
+        trial_time = 5.0
+
     subject_ID = sys.argv[1]
     if sys.argv[2] == "r":
         condition = random.choice(("c", "d"))
     else:
         condition = sys.argv[2]
 
-    theApp = App(subject_ID, condition, debug=False)
+    theApp = App(subject_ID, condition, trial_time, debug=False)
     theApp.on_execute()
