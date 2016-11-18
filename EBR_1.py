@@ -96,10 +96,14 @@ class Main:
 
         while (cap.isOpened()):
             ret, frame = cap.read()
+
             if ret == True:
                 out.write(frame)
-                cv2.imshow('frame', frame)
-                if timer() - self.start > ebr_time:
+                event = pygame.event.poll()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        self.running = False
+                elif timer() - self.start > ebr_time:
                     self.running = False
 
                 if self.running == False:
