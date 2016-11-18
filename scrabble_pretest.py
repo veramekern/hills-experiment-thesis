@@ -29,8 +29,6 @@ screen_h = 500
 fps = 60
 screen = pygame.display.set_mode((screen_w, screen_h), pygame.HWSURFACE |
                                  pygame.DOUBLEBUF | pygame.FULLSCREEN)
-wait_time = 15000
-
 
 class Stimulus:
     def __init__(self, surface):
@@ -179,7 +177,7 @@ class Wait:
                 if event.key == pygame.K_SPACE:
                     return
 
-    def waiter(self, time=15000):
+    def waiter(self, time):
         self.surface.fill(background_color)
         text = self.font.render("Wacht op de volgende letterset", 1,
                                 color_font)
@@ -225,7 +223,7 @@ class Button:
 
 
 class Main:
-    def __init__(self, letters, words, subjectID, condition):
+    def __init__(self, letters, words, subjectID, condition, wait_time):
         # Init data collection
         self.start_time = timer()
         self.subjectID = subjectID
@@ -235,6 +233,7 @@ class Main:
         self.correct_input = []
         self.incorrect_input = []
         self.set_counter = -1
+        self.wait_time = wait_time
 
         filename = str(self.subjectID) + "_scrabble_pretest" + ".txt"
         f = open(filename, 'w')
@@ -291,7 +290,7 @@ class Main:
                 image_intro_foraging = pygame.image.load(os.path.join("images", "intro_practice_foraging.jpg")).convert()
                 self.wait.intro(image_intro_foraging)
             else:
-                self.wait.waiter(time=wait_time)
+                self.wait.waiter(time=self.wait_time)
 
         screen.fill(background_color)
         clock.tick(fps)
@@ -315,6 +314,12 @@ class Main:
         f.close()
 
 if __name__ == '__main__':
+    debug = sys.argv[3]
+    if debug == "f":
+        wait_time = 15000
+    else:
+        wait_time = 100
+
     subject_ID = sys.argv[1]
     if sys.argv[2] == "r":
         condition = random.choice(("c", "d"))
@@ -337,5 +342,5 @@ if __name__ == '__main__':
     for i in range(len(correct_words)):
         correct_words[i] = correct_words[i].split(',')
 
-    run = Main(stimulus_set, correct_words, subject_ID, condition)
+    run = Main(stimulus_set, correct_words, subject_ID, condition, wait_time)
     run.main()
