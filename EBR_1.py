@@ -15,7 +15,6 @@ screen_h = 500
 fps = 60
 screen = pygame.display.set_mode((screen_w, screen_h), pygame.HWSURFACE |
                                  pygame.DOUBLEBUF | pygame.FULLSCREEN)
-ebr_time = 360.0
 
 
 class Stimulus:
@@ -60,9 +59,11 @@ class Stimulus:
 
 
 class Main:
-    def __init__(self, subjectID, condition):
+    def __init__(self, subjectID, condition, ebr_time):
         self.subjectID = subjectID
         self.condition = condition
+        self.ebr_time = ebr_time
+
         filename = str(self.subjectID) + "_EBR_1" + ".txt"
         f = open(filename, 'w')
         output = 'subjectID,condition,time_start,time_end\n'
@@ -103,7 +104,7 @@ class Main:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         self.running = False
-                elif timer() - self.start > ebr_time:
+                elif timer() - self.start > self.ebr_time:
                     self.running = False
 
                 if self.running == False:
@@ -131,10 +132,16 @@ class Main:
         f.close()
 
 if __name__ == '__main__':
+    debug = sys.argv[3]
+    if debug == "f":
+        ebr_time = 360.0
+    else:
+        ebr_time = 10.0
+
     subject_ID = sys.argv[1]
     if sys.argv[2] == "r":
         condition = random.choice(("c", "d"))
     else:
         condition = sys.argv[2]
-    run = Main(subject_ID, condition)
+    run = Main(subject_ID, condition, ebr_time)
     run.main()
