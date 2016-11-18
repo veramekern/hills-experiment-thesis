@@ -89,7 +89,7 @@ class Input:
                          ((self.x - 320), self.y + 155,
                           640, 100), 0)
 
-        countertext_1 = "Probeer de taak door de woorden, 'merk', 'mier' en 'kermis' te typen."
+        countertext_1 = "Probeer de taak door bijvoorbeeld, 'merk', 'mier' en 'kermis' te typen."
         text = self.font_counter.render(countertext_1, 1, counter_text_color)
         self.surface.blit(text, (self.x - 220, self.y + 155))
         countertext_2 = "Probeer ook een verkeerd woord zoals 'markt' of een dubbel woord (nog een keer 'mier')."
@@ -298,7 +298,9 @@ if __name__ == '__main__':
         condition = sys.argv[2]
 
     stimulus_set = "K R I M E S"
-    correct_words = ["mier","merk","kermis"]
+    correct_words = ["skim", "kris", "merk", "riks", "risk", "kiem", "kerm",
+                     "riek", "riem", "reik", "mier", "kers", "kier", "kies",
+                     "emir", "reis", "sier", "imker", "kermis"]
 
     run = Main(stimulus_set, correct_words, subject_ID, condition)
     run.main()
