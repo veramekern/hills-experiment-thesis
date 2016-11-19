@@ -88,10 +88,9 @@ class Input:
                          ((self.x - 200), self.y + 175,
                           400, 60), 0)
 
-        countertext_t = "Total correct words: " + total_text + \
-                        "  Correct words this set: " + set_text
+        countertext_t = "Totaal aantal correcte woorden: " + total_text + \
+                        "  Correcte woorden deze set: " + set_text
         text = self.font_counter.render(countertext_t, 0, counter_text_color)
-        self.surface.blit(text, (self.x - 200, self.y + 180))
 
     def draw_input(self, correct):
         """Draw user input"""
@@ -197,7 +196,7 @@ class Wait:
         self.surface.fill(background_color)
         text = self.font.render("Dat was de tweede scrabbletaak!",
                                 1, color_font)
-        self.surface.blit(text, (self.x - 180, self.y - 50))
+        self.surface.blit(text, (self.x - 155, self.y - 50))
         text = self.font.render("We gaan nu nog een keer je eye blink rate meten",
                                 1, color_font)
         self.surface.blit(text, (self.x - 225, self.y - 15))
