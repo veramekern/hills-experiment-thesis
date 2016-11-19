@@ -12,7 +12,7 @@ color_font = (30, 30, 30)
 background_color = (255, 255, 255)
 screen_w = 640
 screen_h = 500
-fps = 60
+fps = 30
 screen = pygame.display.set_mode((screen_w, screen_h), pygame.HWSURFACE |
                                  pygame.DOUBLEBUF | pygame.FULLSCREEN)
 
@@ -92,7 +92,7 @@ class Main:
 
         # Define the codec and create VideoWriter object
         fourcc = cv2.cv.CV_FOURCC(*'XVID')
-        out = cv2.VideoWriter(str(self.subjectID) + '_EBR3.avi', fourcc, 20.0, (640, 480))
+        out = cv2.VideoWriter(str(self.subjectID) + '_EBR3.avi', fourcc, 30.0, (640, 480))
 
         self.start = timer()
 
