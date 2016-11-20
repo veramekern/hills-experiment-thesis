@@ -86,10 +86,10 @@ class Input:
                          ((self.x - 200), self.y + 175,
                           400, 60), 0)
 
-        countertext_t = "Total correct words: " + total_text + \
-                        "  Correct words this set: " + set_text
-        text = self.font_counter.render(countertext_t, 1, counter_text_color)
-        self.surface.blit(text, (self.x - 200, self.y + 180))
+        countertext_t = "Totaal aantal correcte woorden: " + total_text + \
+                        "  Correcte woorden deze set: " + set_text
+        text = self.font_counter.render(countertext_t, 0, counter_text_color)
+        self.surface.blit(text, (self.x - 260, self.y + 180))
 
     def draw_input(self, correct):
         while True:
