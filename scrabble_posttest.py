@@ -91,6 +91,7 @@ class Input:
         countertext_t = "Totaal aantal correcte woorden: " + total_text + \
                         "  Correcte woorden deze set: " + set_text
         text = self.font_counter.render(countertext_t, 0, counter_text_color)
+        self.surface.blit(text, (self.x - 260, self.y + 180))
 
     def draw_input(self, correct):
         """Draw user input"""
