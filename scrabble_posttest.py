@@ -85,8 +85,8 @@ class Input:
         set_text = str(self.n_correct_words)
 
         pygame.draw.rect(self.surface, (255, 255, 255),
-                         ((self.x - 200), self.y + 175,
-                          400, 60), 0)
+                         ((self.x - 320), self.y + 175,
+                          640, 60), 0)
 
         countertext_t = "Totaal aantal correcte woorden: " + total_text + \
                         "  Correcte woorden deze set: " + set_text
